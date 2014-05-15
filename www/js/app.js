@@ -5,19 +5,15 @@
     var homeTpl = Handlebars.compile($("#home-tpl").html());
     var employeeLiTpl = Handlebars.compile($("#employee-li-tpl").html());
     var employeeTpl = Handlebars.compile($("#employee-tpl").html());
-    var detailsURL = /^#employees\/(\d{1,})/;
-    var adapter = new MemoryAdapter();
 
+    var detailsURL = /^#employees\/(\d{1,})/;
+
+    var adapter = new MemoryAdapter();
     adapter.initialize().done(function () {
-        //$('body').html(new HomeView(adapter, homeTpl, employeeLiTpl).render().el);
         route();
     });
 
     /* --------------------------------- Event Registration -------------------------------- */
-    $('.help-btn').on('click', function() {
-        alert("Some help here...");
-    });
-
     $(window).on('hashchange', route);
 
     document.addEventListener('deviceready', function () {
@@ -37,7 +33,6 @@
     }, false);
 
     /* ---------------------------------- Local Functions ---------------------------------- */
-
     function route() {
         var hash = window.location.hash;
         if (!hash) {
@@ -50,6 +45,6 @@
                 $('body').html(new EmployeeView(adapter, employeeTpl, employee).render().el);
             });
         }
-    };
+    }
 
 }());
